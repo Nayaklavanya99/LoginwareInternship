@@ -44,12 +44,12 @@ def scientific_op(op):
 
 
 # Main application window
-root = Tk()
-root.title("Simple Calculator")
-root.geometry("300x400")
+window = Tk()
+window.title("Simple Calculator")
+window.geometry("300x400")
 
 # Entry box
-entry = Entry(root, width=25, font=("Arial", 16), borderwidth=2, justify="right")
+entry = Entry(window, width=25, font=("Arial", 16), borderwidth=2, justify="right")
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
 # Buttons
@@ -81,16 +81,16 @@ buttons = [
 for text, row, col in buttons:
     if text in "0123456789.+-*/":
         btn = Button(
-            root, text=text, width=5, height=2, command=lambda t=text: button_click(t)
+            window, text=text, width=5, height=2, command=lambda t=text: button_click(t)
         )
     elif text == "=":
-        btn = Button(root, text=text, width=5, height=2, command=calculate)
+        btn = Button(window, text=text, width=5, height=2, command=calculate)
     elif text == "C":
-        btn = Button(root, text=text, width=5, height=2, command=clear)
+        btn = Button(window, text=text, width=5, height=2, command=clear)
     else:
         btn = Button(
-            root, text=text, width=5, height=2, command=lambda t=text: scientific_op(t)
+            window, text=text, width=5, height=2, command=lambda t=text: scientific_op(t)
         )
     btn.grid(row=row, column=col, padx=5, pady=5)
 
-root.mainloop()
+window.mainloop()
