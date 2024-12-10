@@ -2,19 +2,15 @@ from tkinter import *
 from math import sin, cos, tan, sqrt, radians
 
 
-# Function to handle button clicks
 def button_click(value):
     current = entry.get()
     entry.delete(0, END)
     entry.insert(END, current + value)
 
-
-# Function to clear the entry box
 def clear():
     entry.delete(0, END)
 
 
-# Function to calculate the result
 def calculate():
     try:
         result = eval(entry.get())
@@ -25,7 +21,6 @@ def calculate():
         entry.insert(END, "Error")
 
 
-# Function to handle scientific operations
 def scientific_op(op):
     try:
         value = float(entry.get())
@@ -43,16 +38,15 @@ def scientific_op(op):
         entry.insert(END, "Error")
 
 
-# Main application window
 window = Tk()
 window.title("Simple Calculator")
-window.geometry("300x400")
+window.geometry("350x400")
 
-# Entry box
+
 entry = Entry(window, width=25, font=("Arial", 16), borderwidth=2, justify="right")
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
-# Buttons
+
 buttons = [
     ("7", 1, 0),
     ("8", 1, 1),
@@ -77,7 +71,6 @@ buttons = [
     ("sqrt", 6, 0),
 ]
 
-# Add buttons to the window
 for text, row, col in buttons:
     if text in "0123456789.+-*/":
         btn = Button(
