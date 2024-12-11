@@ -96,7 +96,7 @@ def validate_form():
     for i in range(len(entries)):
         if not entries[i].get():
             if entries[i].get() == "DoB":
-                messagebox.showerror("Error", "Gender cannot be empty")
+                entries[i].insert(0, "Not Provided")
             messagebox.showerror("Error", f"{list1[i]} cannot be empty")
             return False
 
@@ -125,7 +125,7 @@ def send():
         conn.commit()
         messagebox.showinfo("Success", "Registration completed successfully!")
         window.destroy()
-        window2 = Toplevel()
+        window2 = Tk()
         window2.geometry("1920x1080")
         window2.title("Registration Form")
         window2.configure(bg="white")
