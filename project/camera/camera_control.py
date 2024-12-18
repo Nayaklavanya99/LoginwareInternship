@@ -32,9 +32,9 @@ def start_recording():
     global camera, video_writer, recording
     if camera is not None and not recording:
         recording = True
-        frame_width = int(camera.get(3))  # Width of the frame
-        frame_height = int(camera.get(4))  # Height of the frame
-        fourcc = cv2.VideoWriter_fourcc(*"MJPG")  # MJPG codec for better compatibility
+        frame_width = int(camera.get(3))  
+        frame_height = int(camera.get(4))  
+        fourcc = cv2.VideoWriter_fourcc(*"MJPG")  
         video_writer = cv2.VideoWriter(
             "/loginwareIn/project/assetsss/recorded_video.avi",  
             fourcc,

@@ -88,7 +88,7 @@ def process_command(command):
         preview_thread = threading.Thread(target=preview_camera)
         preview_thread.start()
         # log_action("Camera launched")
-    elif command == "click":
+    elif command == "capture":
         take_picture()
         # log_action("Picture taken")
     elif command == "record":
