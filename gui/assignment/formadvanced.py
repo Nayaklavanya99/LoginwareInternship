@@ -39,8 +39,8 @@ for i in genders:
 
 
 valx = 700
-valy = 100
-for i in range(len(list1)-2):
+valy = 50
+for i in range(len(list1)-1):
     entry = Entry(window, width=40, bg="lightgrey")
     entry.place(x=valx, y=valy)
     entries.append(entry)

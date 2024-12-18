@@ -45,11 +45,11 @@ data_of_students = [(123,"Sahil","Belurkar",22,"Second","sahil@gmail.com"),
                    (126,"Maria","Garcia",22,"Second","maria.g@gmail.com"),
                    (127,"David","Wilson",20,"First","david.w@gmail.com")]
 
-data_of_courses = [(101, "Mathematics", "Mathematics"),
-                   (102, "Physics", "Physics"),
-                   (103, "Chemistry", "Chemistry"),
-                   (104, "Biology", "Biology"),
-                   (105, "Computer Science", "Computer Science")]
+data_of_courses = [(101, "Mathematics", "MCA"),
+                   (102, "Physics", "Msc"),
+                   (103, "Chemistry", "Msc"),
+                   (104, "Biology", "MSc"),
+                   (105, "Computer Science", "MCA")]
 data_of_enrollment = [(1, 123, 101, "Second"),
                       (2, 124, 102, "Second"),
                       (3, 125, 103, "First"),

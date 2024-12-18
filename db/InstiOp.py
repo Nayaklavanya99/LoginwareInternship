@@ -7,8 +7,7 @@ cur = conn.cursor()
 fetch_query = "SELECT * FROM Student"
 cur.execute(fetch_query)
 data = cur.fetchall()
-for row in data:
-    print(row)
+print(data[0])
 
 
 conn.commit()
