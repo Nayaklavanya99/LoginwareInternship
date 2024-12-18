@@ -97,7 +97,7 @@ def process_command(command):
         preview_thread = threading.Thread(target=preview_camera)
         preview_thread.start()
         # log_action("Recording started")
-    elif command == "save":
+    elif command == "done":
         save_video()
         # log_action("Video saved")
     elif command == "cancel":
