@@ -20,7 +20,7 @@ def take_picture():
     if camera is not None:
         ret, frame = camera.read()
         if ret:
-            cv2.imwrite("/loginwareIn/project/assets/captured_image.jpg", frame)
+            cv2.imwrite("/loginwareIn/project/assetsss/captured_image.jpg", frame)
             print("Picture taken and saved as 'captured_image.jpg'.")
         else:
             print("Failed to capture image.")
@@ -36,7 +36,7 @@ def start_recording():
         frame_height = int(camera.get(4))  # Height of the frame
         fourcc = cv2.VideoWriter_fourcc(*"MJPG")  # MJPG codec for better compatibility
         video_writer = cv2.VideoWriter(
-            "/loginwareIn/project/assets/recorded_video.avi",  
+            "/loginwareIn/project/assetsss/recorded_video.avi",  
             fourcc,
             20.00,  
             (frame_width, frame_height),
