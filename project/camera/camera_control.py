@@ -32,32 +32,36 @@ def start_recording():
     global camera, video_writer, recording
     if camera is not None and not recording:
         recording = True
-        frame_width = int(camera.get(3))  
-        frame_height = int(camera.get(4))  
-        fourcc = cv2.VideoWriter_fourcc(*"MJPG")  
+        fourcc = cv2.VideoWriter_fourcc(*"XVID")  # For .AVI XVID
         video_writer = cv2.VideoWriter(
-            "/loginwareIn/project/assetsss/recorded_video.avi",  
-            fourcc,
-            20.00,  
-            (frame_width, frame_height),
+            "/loginwareIn/project/assetsss/recorded_video.avi", fourcc, 20.0, (640, 480)
         )
         print("Recording started.")
 
-    # Check if recording is active, then capture and save frames
-    if recording:
-        ret, frame = camera.read()
-        if ret:
-            video_writer.write(frame)  # Write the captured frame to the video file
-        else:
-            print("Failed to capture frame.")
+        while recording:
+            ret, frame = camera.read()
+            if not ret:
+                print("Unable to capture the frame.")
+                break
+            video_writer.write(frame)
+
+        video_writer.release()
+        print("Recording stopped and video saved.")
 
 
 def save_video():
-    global video_writer, recording
+    global recording
     if recording:
         recording = False
-        video_writer.release()
-        print("Recording stopped and video saved as 'recorded_video.avi'.")
+        print("Recording stopped and video saved.")
+
+
+# def save_video():
+#     global video_writer, recording
+#     if recording:
+#         # recording = False
+#         video_writer.release()
+#         print("Recording stopped and video saved as 'recorded_video.avi'.")
 
 
 def close_camera():
