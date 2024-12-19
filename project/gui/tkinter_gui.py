@@ -10,6 +10,19 @@ from loginwareIn.project.camera.camera_control import (
 
 )
 import threading  
+def start_voice_commands():
+    """Run voice command listening in a separate thread to avoid blocking the GUI"""
+    while True:
+        command = listen_for_command()
+        if command:
+            process_command(command)
+
+
+def start_voice_thread():
+    """Start voice command thread to keep GUI responsive"""
+    voice_thread = threading.Thread(target=start_voice_commands, daemon=True)
+    voice_thread.start()
+
 
 # commands_frame = None
 def toggle_commands():
@@ -26,7 +39,7 @@ def process_command(command):
         take_picture()
     elif command == "record":
         start_recording()
-    elif command == "stop":
+    elif command == "stop recording":
         save_video()
     elif command == "cancel":
         close_camera()
@@ -62,7 +75,7 @@ def create_gui():
     start_button = tk.Button(
         root,
         text="Start Voice Commands",
-        command=start_voice_commands,
+        command=start_voice_thread,
         bg="#4CAF50",  # Green color
         fg="white",
         font=("Arial", 12, "bold"),
@@ -117,7 +130,6 @@ def create_gui():
         bd=5,
     )
     expand_button.pack(pady=10)
-
 
     root.mainloop()
 

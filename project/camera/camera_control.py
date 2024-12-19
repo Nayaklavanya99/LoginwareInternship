@@ -55,8 +55,8 @@ def launch_camera():
     global camera, camera_thread, stop_event
     if camera is None:
         camera = cv2.VideoCapture(0)
-        camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+        camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         if not camera.isOpened():
             print("Error: Camera not found!")
             return
@@ -85,7 +85,7 @@ def start_recording():
         recording = True
         fourcc = cv2.VideoWriter_fourcc(*"XVID")  # For .AVI XVID
         video_writer = cv2.VideoWriter(
-            "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0,(1920,1080)
+            "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0,(640,480)
         )
         print("Recording started.")
 
