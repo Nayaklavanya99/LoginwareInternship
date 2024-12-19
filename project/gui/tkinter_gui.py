@@ -85,8 +85,8 @@ def process_command(command):
     if command == "launch camera":
         launch_camera()
         # Launch preview in a separate thread so it doesn't block further commands
-        preview_thread = threading.Thread(target=preview_camera)
-        preview_thread.start()
+        # preview_thread = threading.Thread(target=preview_camera)
+        # preview_thread.start()
         # log_action("Camera launched")
     elif command == "capture":
         take_picture()
@@ -94,8 +94,8 @@ def process_command(command):
     elif command == "record":
         start_recording()
         # Launch preview in a separate thread for recording
-        preview_thread = threading.Thread(target=preview_camera)
-        preview_thread.start()
+        # preview_thread = threading.Thread(target=preview_camera)
+        # preview_thread.start()
         # log_action("Recording started")
     elif command == "done":
         save_video()
