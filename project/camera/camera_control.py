@@ -18,10 +18,23 @@ def show_camera():
         if not ret:
             print("Unable to capture the frame.")
             break
-
         # Determine the new window title based on recording status
         new_window = "Recording Feed" if recording else "Camera Feed"
+        # timestamp = time.ctime()
+        # height, width = frame.shape[:2]
 
+        # # Place the text at the bottom of the frame
+        # cv2.putText(
+        #     frame,
+        #     timestamp,
+        #     (10, height - 10),  # Adjust the y-coordinate to place the text at the bottom
+        #     cv2.FONT_HERSHEY_SIMPLEX,
+        #     0.5,  # Smaller font size
+        #     (255, 255, 255),  # White color
+        #     1,  # Thinner line thickness
+        #     cv2.LINE_AA
+        # )
+        
         # If the window title changes, destroy the current window and create a new one
         if new_window != current_window:
             cv2.destroyWindow(current_window)
@@ -42,6 +55,8 @@ def launch_camera():
     global camera, camera_thread, stop_event
     if camera is None:
         camera = cv2.VideoCapture(0)
+        camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         if not camera.isOpened():
             print("Error: Camera not found!")
             return
@@ -57,7 +72,7 @@ def take_picture():
     if camera is not None:
         ret, frame = camera.read()
         if ret:
-            cv2.imwrite("/loginwareIn/project/assetsss/captured_image1.jpg", frame)
+            cv2.imwrite("/loginwareIn/project/asssests/captured_image2.jpg", frame)
             print("Picture taken and saved as 'captured_image1.jpg'.")
         else:
             print("Failed to capture image.")
@@ -70,7 +85,7 @@ def start_recording():
         recording = True
         fourcc = cv2.VideoWriter_fourcc(*"XVID")  # For .AVI XVID
         video_writer = cv2.VideoWriter(
-            "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0, (640, 480)
+            "/loginwareIn/project/asssests/recorded_video3.avi", fourcc, 20.0,(640,480)
         )
         print("Recording started.")
 
