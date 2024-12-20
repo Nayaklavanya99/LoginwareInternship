@@ -72,7 +72,7 @@ def take_picture():
     if camera is not None:
         ret, frame = camera.read()
         if ret:
-            cv2.imwrite("/loginwareIn/project/assetsss/captured_image1.jpg", frame)
+            cv2.imwrite("/loginwareIn/project/asssests/captured_image2.jpg", frame)
             print("Picture taken and saved as 'captured_image1.jpg'.")
         else:
             print("Failed to capture image.")
@@ -85,7 +85,15 @@ def start_recording():
         recording = True
         fourcc = cv2.VideoWriter_fourcc(*"XVID")  # For .AVI XVID
         video_writer = cv2.VideoWriter(
+<<<<<<< HEAD
             "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0,(640,480)
+=======
+<<<<<<< HEAD
+            "/loginwareIn/project/asssests/recorded_video3.avi", fourcc, 20.0,(640,480)
+=======
+            "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0,(640,480)
+>>>>>>> 52cc405e754718814b473994cd6639e3820d4493
+>>>>>>> origin/submain
         )
         print("Recording started.")
 
