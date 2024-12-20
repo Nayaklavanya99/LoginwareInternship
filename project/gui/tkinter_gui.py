@@ -10,36 +10,13 @@ from loginwareIn.project.camera.camera_control import (
     save_video,
     close_camera,
 )
-<<<<<<< HEAD
-=======
-import threading  
-def start_voice_commands():
+
+def start_voice_commands(output_label):
     """Run voice command listening in a separate thread to avoid blocking the GUI"""
     while True:
         command = listen_for_command()
         if command:
-            process_command(command)
-
-
-def start_voice_thread():
-    """Start voice command thread to keep GUI responsive"""
-    voice_thread = threading.Thread(target=start_voice_commands, daemon=True)
-    voice_thread.start()
-
-
-# commands_frame = None
-def toggle_commands():
-    if commands_frame.winfo_ismapped():
-        commands_frame.pack_forget()  # Hide the commands section
-    else:
-        commands_frame.pack(pady=20)
->>>>>>> 52cc405e754718814b473994cd6639e3820d4493
-
-def start_voice_commands():
-    """Run voice command listening in a separate thread to avoid blocking the GUI"""
-    while True:
-        command = listen_for_command()
-        if command:
+            output_label.config(text=f"Command recognized: {command}")
             process_command(command)
 
 def process_command(command):
@@ -56,14 +33,17 @@ def process_command(command):
         quit()
     else:
         print("Command not recognized.")
-def start_voice_thread():
+
+def start_voice_thread(output_label):
     """Start voice command thread to keep GUI responsive"""
-    voice_thread = threading.Thread(target=start_voice_commands, daemon=True)
+    voice_thread = threading.Thread(target=start_voice_commands, args=(output_label,), daemon=True)
     voice_thread.start()
+
 class VoiceCommandThread(threading.Thread):
-    def __init__(self):
+    def __init__(self, output_label):
         super().__init__(daemon=True)
         self._stop_event = threading.Event()
+        self.output_label = output_label
 
     def stop(self):
         self._stop_event.set()
@@ -72,8 +52,11 @@ class VoiceCommandThread(threading.Thread):
         while not self._stop_event.is_set():
             command = listen_for_command()
             if command is None:
-                continue  # Skip if no command was understood
+                self.output_label.config(text="Listening...")
+                continue
                 
+            self.output_label.config(text=f"Command recognized: {command}")
+            
             if command == "launch camera":
                 launch_camera()
             elif command == "capture":
@@ -99,21 +82,32 @@ def create_gui():
 
     voice_thread = None
 
-    # def start_voice_command_thread():
-    #     nonlocal voice_thread
-    #     if voice_thread is None or not voice_thread.is_alive():
-    #         voice_thread = VoiceCommandThread()
-    #         voice_thread.start()
-    #         start_button.config(state='disabled')
-    #         quit_button.config(state='normal')
+    # Add output label for speech recognition
+    output_label = tk.Label(
+        root,
+        text="Waiting to start...",
+        font=("Helvetica", 12),
+        bg="#f5f6fa",
+        fg="#7f8c8d"
+    )
+    output_label.pack(pady=10)
+
+    def start_voice_command_thread():
+        nonlocal voice_thread
+        if voice_thread is None or not voice_thread.is_alive():
+            voice_thread = VoiceCommandThread(output_label)
+            voice_thread.start()
+            start_button.config(state='disabled')
+            quit_button.config(state='normal')
+            output_label.config(text="Listening...")
 
     def stop_voice_commands():
         nonlocal voice_thread
         if voice_thread and voice_thread.is_alive():
             voice_thread.stop()
-            voice_thread.join()  # Ensure the thread has finished executing
+            voice_thread.join()
             voice_thread = None
-        root.quit()  # Terminate the mainloop
+        root.quit()
         root.destroy()
 
     def open_home():
@@ -150,25 +144,12 @@ def create_gui():
     )
     label.pack(pady=(10, 5))
 
-<<<<<<< HEAD
     subtitle = tk.Label(
         title_frame,
         text="Control your camera with simple voice commands",
         font=("Helvetica", 14),
         bg="#f5f6fa",
         fg="#7f8c8d",
-=======
-    # Start Voice Command Button
-    start_button = tk.Button(
-        root,
-        text="Start Voice Commands",
-        command=start_voice_thread,
-        bg="#4CAF50",  # Green color
-        fg="white",
-        font=("Arial", 12, "bold"),
-        relief="raised",
-        bd=5,
->>>>>>> 52cc405e754718814b473994cd6639e3820d4493
     )
     subtitle.pack(pady=(0, 10))
 
@@ -283,7 +264,7 @@ def create_gui():
     start_button = tk.Button(
         inner_frame,
         text="Start Voice Commands",
-        command=start_voice_thread,
+        command=start_voice_command_thread,
         bg="#27ae60",
         fg="white",
         font=("Helvetica", 16, "bold"),
@@ -297,9 +278,6 @@ def create_gui():
     start_button.bind("<Enter>", on_enter)
     start_button.bind("<Leave>", on_leave)
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     # Separator
     separator = tk.Frame(inner_frame, height=1, bg="#e0e6ed")
     separator.pack(fill="x", pady=20)
@@ -323,7 +301,6 @@ def create_gui():
         padx=40,
         pady=20,
         cursor="hand2"
-        # Removed the state='disabled' to make the quit button always active
     )
     quit_button.pack()
     quit_button.bind("<Enter>", on_enter_quit)
@@ -332,9 +309,6 @@ def create_gui():
     # Bind window closing event
     root.protocol("WM_DELETE_WINDOW", on_closing)
 
-=======
->>>>>>> 52cc405e754718814b473994cd6639e3820d4493
->>>>>>> origin/submain
     root.mainloop()
 
 if __name__ == "__main__":
