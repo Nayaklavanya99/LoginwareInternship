@@ -85,7 +85,11 @@ def start_recording():
         recording = True
         fourcc = cv2.VideoWriter_fourcc(*"XVID")  # For .AVI XVID
         video_writer = cv2.VideoWriter(
+<<<<<<< HEAD
             "/loginwareIn/project/asssests/recorded_video3.avi", fourcc, 20.0,(640,480)
+=======
+            "/loginwareIn/project/assetsss/recorded_video3.avi", fourcc, 20.0,(640,480)
+>>>>>>> 52cc405e754718814b473994cd6639e3820d4493
         )
         print("Recording started.")
 
