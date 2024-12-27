@@ -85,5 +85,27 @@ Navigate to the `db` directory and run the desired script using Python:
 ```bash  
 cd db  
 python Book.py
+```
+
+## Requirements
+- Python 3.x
+- Tkinter
+- OpenCV
+- Matplotlib
+- SpeechRecognition
+- gTTS
+- Ubidots
+
+## Installation
+### Install the required packages using pip:
+```bash
+pip install opencv-python matplotlib SpeechRecognition gtts ubidots  
+```
 
 
+## License
+### This project is licensed under the MIT License.
+
+## Authors
+- **Sahil Belurkar**
+- **Lavanya Nayak**
