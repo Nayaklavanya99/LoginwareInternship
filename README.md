@@ -101,7 +101,14 @@ python Book.py
 ```bash
 pip install opencv-python matplotlib SpeechRecognition gtts ubidots  
 ```
+### To run the VOice controlled Camera App
 
+Navigate to the `project/gui/` directory and run the desired Tkinter GUI script:
+
+```bash
+cd project/gui
+python tkinter_gui.py
+```
 
 ## License
 ### This project is licensed under the MIT License.
